@@ -1,0 +1,35 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<h1>Historial de Donaciones</h1>
+
+<!-- Tabla con clases Bootstrap para estilo -->
+<table class="table table-striped table-bordered table-hover">
+    <thead class="table-primary">
+        <tr>
+            <!-- Encabezados de la tabla -->
+            <th>Donante</th>
+            <th>Campaña</th>
+            <th>Monto</th>
+            <th>Fecha</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for donacion in donaciones %}
+        <tr>
+            <td>{{ donacion.donante.user }}</td>
+            <td>{{ donacion.campaña.nombre }}</td>
+            <td>{{ donacion.monto }}</td>
+            <td>{{ donacion.fecha }}</td>
+          
+        </tr>
+        {% empty %}
+        <!-- Mensaje si no hay donaciones -->
+        <tr>
+            <td colspan="5">No hay donaciones registradas.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+

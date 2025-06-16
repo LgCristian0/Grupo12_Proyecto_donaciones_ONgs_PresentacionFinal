@@ -1,0 +1,15 @@
+{% extends 'core/base.html' %}
+<!-- Usamos la plantilla base -->
+
+{% block content %}
+
+  <h2>¿Estás seguro que quieres eliminar la campaña "{{ campaña.nombre }}"?</h2>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Sí, eliminar</button>
+    <a href="{% url 'mostrar_campañas' %}">Cancelar</a>
+  </form>
+
+
+{% endblock %}
+<!-- Terminamos el bloque de contenido -->

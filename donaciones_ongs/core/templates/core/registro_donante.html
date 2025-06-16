@@ -1,0 +1,20 @@
+{% extends "core/base.html" %}
+
+{% block title %}Registro Donante{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="form-wrapper card shadow-sm">
+    <h2 class="mb-4 text-center">Registro Donante</h2>
+
+    <form method="post" class="needs-validation" novalidate>
+      {% csrf_token %}
+      {{ user_form.as_p }}
+      {{ extra_form.as_p }}
+
+      <button type="submit" class="btn btn-success w-100 mt-3">Registrar</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
+

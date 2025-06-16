@@ -1,0 +1,51 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Campañas{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1 class="mb-4">Campañas Activas</h1>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover align-middle">
+      <thead class="table-primary">
+        <tr>
+          <th>ONG</th>
+          <th>Nombre</th>
+          <th>Meta</th>
+          <th>Monto Actual</th>
+          <th>Fecha Inicio</th>
+          <th>Fecha Fin</th>
+          {% if request.user.is_authenticated %}
+            <th>Acciones</th>
+          {% endif %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for campaña in campañas %}
+        <tr>
+          <td>{{ campaña.ong.user.username }}</td>
+          <td>{{ campaña.nombre }}</td>
+          <td>${{ campaña.meta|floatformat:2 }}</td>
+          <td>${{ campaña.monto_actual|floatformat:2 }}</td>
+          <td>{{ campaña.fecha_inicio|date:"d/m/Y" }}</td>
+          <td>{{ campaña.fecha_fin|date:"d/m/Y" }}</td>
+          {% if request.user.is_authenticated and request.user.is_superuser or request.user.ong == campaña.ong %}
+          <td>
+             <a href="{% url 'editar_campaña' campaña.id %}" class="btn btn-sm btn-warning me-2">Editar</a>
+    <a href="{% url 'eliminar_campaña' campaña.id %}" class="btn btn-sm btn-danger">Eliminar</a>
+  </td>
+{% else %}
+          <td class="text-center">-</td>
+          {% endif %}
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="7" class="text-center">No hay campañas registradas.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

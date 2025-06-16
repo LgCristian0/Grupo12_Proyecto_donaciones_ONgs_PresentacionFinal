@@ -1,0 +1,4 @@
+# Entorno virtual
+env/
+# Configuraciones del entorno
+*.env

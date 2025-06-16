@@ -1,0 +1,16 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+ <div class="container">
+  <div  class="form-wrapper card shadow-sm">
+    <h2 class="mb-4 text-center">Registrar Donación</h2>
+    <form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="btn btn-success">Guardar Donación</button>
+</form>
+  </div>
+</div>
+
+{% endblock %}
+
